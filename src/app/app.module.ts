@@ -7,6 +7,7 @@ import { HeaderComponent } from './header/header.component';
 import { DepartmentComponent } from './department/department.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserlistComponent } from './userlist/userlist.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { UserlistComponent } from './userlist/userlist.component';
     HeaderComponent,
     DepartmentComponent,
     DashboardComponent,
-    UserlistComponent
+    UserlistComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
