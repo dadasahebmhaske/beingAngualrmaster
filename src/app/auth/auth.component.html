@@ -1,7 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-12 col-md-6 col-md-offset-3">
-          <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" autocomplete="off">
+            <div class="alert alert-danger" *ngIf="error">
+                <p>{{error}}</p>
+            </div>
+            <div *ngIf="isLoading" class="text-center">
+                <app-loading-spinner></app-loading-spinner>
+            </div>
+          <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" autocomplete="off" *ngIf="!isLoading">
             <div class="form-group">
               <label for="email">E-Mail</label>
               <input type="email" id="email"
@@ -12,6 +18,7 @@
                email 
                autocomplete="off"
                placeholder="Enter your email id"
+               autocomplete="false"
                />
             </div>
             <div class="form-group">
@@ -23,12 +30,13 @@
                minlength="6"
                autocomplete="off"
                required
-               placeholder="Enter your password"/>
+               placeholder="Enter your password"
+               autocomplete="false"/>
             </div>
             <div>
               <button class="btn btn-primary" type="submit"
               [disabled]="!authForm.valid">{{isLoginMode?'Login':'Sign Up'}}</button> |
-              <button class="btn btn-primary" type="button" (click)="onSwitchMode()">
+              <button class="btn btn-warning" type="button" (click)="onSwitchMode()">
                   Switch to {{isLoginMode?'Sign Up':'Login'}}</button>
             </div>
           </form>
