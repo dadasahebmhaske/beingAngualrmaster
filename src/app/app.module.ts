@@ -8,6 +8,7 @@ import { DepartmentComponent } from './department/department.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UserlistComponent } from './userlist/userlist.component';
 import { AuthComponent } from './auth/auth.component';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { AuthComponent } from './auth/auth.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
