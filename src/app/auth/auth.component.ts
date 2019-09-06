@@ -32,9 +32,10 @@ if(this.isLoginMode){
   this.authservice.signUp(email,password).subscribe(resData=>{
     console.log(resData);
     this.isLoading=false;
-    },error=>{
-      console.log(error);
-      this.error="an error occured!!"
+    },errorRes=>{
+      console.log(errorRes);
+  
+      
       this.isLoading=false;
     }
     );
