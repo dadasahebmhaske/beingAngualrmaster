@@ -6,7 +6,7 @@ import { UserlistComponent } from './userlist/userlist.component';
 import { AuthComponent } from './auth/auth.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/auth', pathMatch: 'full' },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'auth', component: AuthComponent },
   

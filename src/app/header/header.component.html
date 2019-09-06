@@ -6,23 +6,29 @@
 
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-           
-                <li routerLinkActive="active">
+
+                <li routerLinkActive="active" *ngIf="isAuthenticated">
                     <a routerLink="/dashboard">Dashboard</a>
                 </li>
 
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="isAuthenticated">
                     <a routerLink="/department">Department</a>
                 </li>
 
-                <li routerLinkActive="active">
-                        <a routerLink="/userlist">Users</a>
-                    </li>
+                <li routerLinkActive="active" *ngIf="isAuthenticated">
+                    <a routerLink="/userlist">Users</a>
+                </li>
+                <!-- <li routerLinkActive="active" *ngIf="!isAuthenticated">
+                <a routerLink="/auth">
+                    <span class="glyphicon glyphicon-user"></span> Sign In / Up</a>
+                </li> -->
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                    <li  routerLinkActive="active"><a routerLink="/auth"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                    <li  routerLinkActive="active"><a routerLink="/auth"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                  </ul>
+            <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated">
+                <li routerLinkActive="active">
+                    <a style="cursor: pointer;">
+                        <span class="glyphicon glyphicon-switch-off"></span> Logout</a>
+                </li>
+            </ul>
             <!-- <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown" appDropdown>
                     <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage

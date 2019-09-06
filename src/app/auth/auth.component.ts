@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService,AuthResponseData } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -26,21 +27,33 @@ onSubmit(form:NgForm){
   }
 const email=form.value.email;
 const password=form.value.password;
-if(this.isLoginMode){
 
-}else{
-  this.authservice.signUp(email,password).subscribe(resData=>{
-    console.log(resData);
-    this.isLoading=false;
-    },errorRes=>{
-      console.log(errorRes);
-  
-      
-      this.isLoading=false;
-    }
-    );
+let authObs: Observable<AuthResponseData>;
+if(this.isLoginMode){
+  authObs = this.authservice.logIn(email,password);
+ }else{
+  authObs = this.authservice.signUp(email,password);
+  //for if u dontg want use common code use below seprate with authObs
+  // this.authservice.signUp(email,password).subscribe(resData=>{
+  //   console.log(resData);
+  //   this.isLoading=false;
+  //   },errorMessage=>{
+  //     console.log(errorMessage);
+  //     this.error=errorMessage;      
+  //     this.isLoading=false;
+  //   }
+  //   );
      
 }
+authObs.subscribe(resData=>{
+  console.log(resData);
+  this.isLoading=false;
+  },errorMessage=>{
+    console.log(errorMessage);
+    this.error=errorMessage;      
+    this.isLoading=false;
+  }
+  );
 form.reset();
 }
 }
