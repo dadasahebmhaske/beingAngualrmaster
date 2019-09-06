@@ -17,6 +17,9 @@ public isAuthenticated:boolean=false;
      this.isAuthenticated=!user?false:true;//short ahand use !!user
     });
   }
+  logout(){
+    this.authService.logOut();
+  }
 ngOnDestroy(){
   this.userSub.unsubscribe();
 }

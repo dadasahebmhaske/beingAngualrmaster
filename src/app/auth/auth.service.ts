@@ -3,6 +3,7 @@ import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { pipe,throwError, Subject, BehaviorSubject } from 'rxjs';
 import{catchError,tap} from 'rxjs/operators';
 import{User} from './user.model';
+import { Router } from '@angular/router';
 //import { tap } from 'rxjs/internal/operators/tap';
 
 export interface AuthResponseData {
@@ -18,7 +19,7 @@ export interface AuthResponseData {
 })
 export class AuthService {
 user =  new BehaviorSubject<User>(null);
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,private router:Router) { }
 
 //   signUp(email: string, password: string) {
 //     return this.httpClient.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY',
@@ -40,6 +41,10 @@ user =  new BehaviorSubject<User>(null);
 //       }))
       
 //   }
+logOut(){
+    this.user.next(null);
+    this.router.navigate(['/auth'])
+}
 signUp(email: string, password: string) {
     return this.httpClient.post<AuthResponseData>('https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY',
       {
@@ -63,11 +68,15 @@ signUp(email: string, password: string) {
         this.handleAuthentication(resData.email,resData.localId,resData.idToken,+resData.expiresIn)
     }));
   }
+//   getUser(token){
+//       return this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY',{
+//         idToken:token
+//       }).pipe(catchError(this.handleError));
+//   }
+//get with httpInterceptor
   getUser(token){
-      return this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY',{
-        idToken:token
-      }).pipe(catchError(this.handleError));
-  }
+    return this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY').pipe(catchError(this.handleError));
+}
   
   //common authen user handling with tap operator
   private handleAuthentication(email:string,userId:string,token:string,expiresIn:number){

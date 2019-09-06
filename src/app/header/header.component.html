@@ -25,7 +25,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right" *ngIf="isAuthenticated">
                 <li routerLinkActive="active">
-                    <a style="cursor: pointer;">
+                    <a style="cursor: pointer;" (click)="logout()">
                         <span class="glyphicon glyphicon-switch-off"></span> Logout</a>
                 </li>
             </ul>
