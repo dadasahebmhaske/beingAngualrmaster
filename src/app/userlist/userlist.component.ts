@@ -34,17 +34,17 @@ export class UserlistComponent implements OnInit {
     }
     );
   }
-  getUser() {
-    this.authservice.user.pipe(take(1), exhaustMap(user => {
-       this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY', {
-        idToken: user.token
-      }).subscribe(rsData=>{
-        console.log(rsData)
-      },
-      error=>{
-        console.log(error)
-      });
-    }));
-  }
+  // getUser() {
+  //   this.authservice.user.pipe(take(1), exhaustMap(user => {
+  //      this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY', {
+  //       idToken: user.token
+  //     }).subscribe(rsData=>{
+  //       console.log(rsData)
+  //     },
+  //     error=>{
+  //       console.log(error)
+  //     });
+  //   }));
+  // }
 
 }

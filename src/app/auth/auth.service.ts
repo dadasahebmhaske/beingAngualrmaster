@@ -75,7 +75,7 @@ signUp(email: string, password: string) {
 //   }
 //get with httpInterceptor
   getUser(token){
-    return this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY').pipe(catchError(this.handleError));
+    return this.httpClient.post('https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=AIzaSyBDwBDbLVXCUhDDfdtHAqZuRWQxZeoOzKY',{}).pipe(catchError(this.handleError));
 }
   
   //common authen user handling with tap operator
